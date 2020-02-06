@@ -11,8 +11,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/', express.static('public'));
 
-app.get('/reservation', (req, res) => {
+app.use('/:id', express.static('public'));
+
+app.get('/:id/reservation/times', (req, res) => {
   const reservation = (req.query);
+  console.log(reservation);
   // requested party size
   const partySize = reservation.size;
   const id = reservation.id;
@@ -48,3 +51,4 @@ app.get('/reservation', (req, res) => {
 });
 
 app.listen(port);
+module.exports.port = port;
